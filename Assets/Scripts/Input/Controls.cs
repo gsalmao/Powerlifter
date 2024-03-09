@@ -37,6 +37,24 @@ namespace Powerlifter.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Slice"",
+                    ""type"": ""Button"",
+                    ""id"": ""a55d4dd8-99d0-4253-902e-68b5e499803c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcc70a1a-a28a-421b-a124-313e6e354717"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -149,6 +167,28 @@ namespace Powerlifter.Input
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7d5f06d-6467-4c50-9e95-fc8939912668"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb70ce10-176d-45ee-aff7-0530bd3d6ca9"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -158,6 +198,8 @@ namespace Powerlifter.Input
             // Gameplay
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+            m_Gameplay_Slice = m_Gameplay.FindAction("Slice", throwIfNotFound: true);
+            m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -220,11 +262,15 @@ namespace Powerlifter.Input
         private readonly InputActionMap m_Gameplay;
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Move;
+        private readonly InputAction m_Gameplay_Slice;
+        private readonly InputAction m_Gameplay_Throw;
         public struct GameplayActions
         {
             private @Controls m_Wrapper;
             public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+            public InputAction @Slice => m_Wrapper.m_Gameplay_Slice;
+            public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -237,6 +283,12 @@ namespace Powerlifter.Input
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Slice.started += instance.OnSlice;
+                @Slice.performed += instance.OnSlice;
+                @Slice.canceled += instance.OnSlice;
+                @Throw.started += instance.OnThrow;
+                @Throw.performed += instance.OnThrow;
+                @Throw.canceled += instance.OnThrow;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -244,6 +296,12 @@ namespace Powerlifter.Input
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Slice.started -= instance.OnSlice;
+                @Slice.performed -= instance.OnSlice;
+                @Slice.canceled -= instance.OnSlice;
+                @Throw.started -= instance.OnThrow;
+                @Throw.performed -= instance.OnThrow;
+                @Throw.canceled -= instance.OnThrow;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -264,6 +322,8 @@ namespace Powerlifter.Input
         public interface IGameplayActions
         {
             void OnMove(InputAction.CallbackContext context);
+            void OnSlice(InputAction.CallbackContext context);
+            void OnThrow(InputAction.CallbackContext context);
         }
     }
 }
