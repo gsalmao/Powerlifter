@@ -1,7 +1,11 @@
 {
     "name": "Powerlifter.Scenes",
     "rootNamespace": "Powerlifter.Scenes",
-    "references": [],
+    "references": [
+        "GUID:d62e28c2a2479b64cb899945fc58aca1",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:029c1c1b674aaae47a6841a0b89ad80e"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
