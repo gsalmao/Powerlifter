@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7856020676274776029}
   - component: {fileID: 5179472888687410562}
   - component: {fileID: 9126709476258204783}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TopSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 55102347083d479469ae930edcc0e1fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3404215436196785170}
   - component: {fileID: 8512752310023759389}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpriteMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,9 +192,9 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
-  m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
+  m_FrontSortingOrder: 3
+  m_BackSortingOrder: 2
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!1 &2966039622606041637
 GameObject:
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2448894941649864681}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677577154162065349}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,6 +307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 344649010496173568}
+  topMask: {fileID: 8263987900399335601}
+  bottomMask: {fileID: 8512752310023759389}
+  topSprite: {fileID: 5179472888687410562}
+  bottomSprite: {fileID: 534257523300012253}
   piecesRb:
   - {fileID: 9126709476258204783}
   - {fileID: 3309981970131208757}
@@ -326,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842346742103797133}
   - component: {fileID: 8263987900399335601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpriteMask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,9 +399,9 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
+  m_FrontSortingOrder: 2
   m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!1 &7561571085295363975
 GameObject:
@@ -408,6 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3167754604689943730}
+  - component: {fileID: 8099575714976653944}
   - component: {fileID: 7275674361587738959}
   - component: {fileID: 344649010496173568}
   - component: {fileID: 7774214227864492061}
@@ -433,6 +438,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6230507565210471890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8099575714976653944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561571085295363975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c997e6de019e440b478376f9b80e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruit: {fileID: 6176188128209380482}
 --- !u!212 &7275674361587738959
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -558,7 +576,7 @@ GameObject:
   - component: {fileID: 2440358613393832320}
   - component: {fileID: 534257523300012253}
   - component: {fileID: 3309981970131208757}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BottomSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +639,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 55102347083d479469ae930edcc0e1fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -669,7 +687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2614790629334056581}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SlicedFruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

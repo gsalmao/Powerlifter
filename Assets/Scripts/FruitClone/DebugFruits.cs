@@ -23,12 +23,10 @@ namespace FruitClone
         {
             _controls.Enable();
             _controls.Gameplay.Throw.performed += SpawnFruit;
-            _controls.Gameplay.Slice.performed += KillAll;
         }
         private void OnDisable()
         {
             _controls.Gameplay.Throw.performed -= SpawnFruit;
-            _controls.Gameplay.Slice.performed -= KillAll;
             _controls.Disable();
         }
 
@@ -37,14 +35,6 @@ namespace FruitClone
             Fruit newFruit = ObjectPool.Spawn(prefab, fruitSpawnPoint.position, fruitSpawnPoint.rotation);
             newFruit.Init(force);
             fruits.Add(newFruit);
-        }
-
-        private void KillAll(InputAction.CallbackContext ctx)
-        {
-            foreach(Fruit fruit in fruits)
-                fruit.Slice(sliceAngle);
-
-            fruits.Clear();
         }
     }
 }

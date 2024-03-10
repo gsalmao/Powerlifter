@@ -1,20 +1,29 @@
 using Powerlifter.Input;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ZHMQ.ObjectPooling;
 
 namespace FruitClone
 {
     public class Blade : MonoBehaviour
     {
-        [SerializeField] private Transform bladeTrigger;
+        public static event Action OnReleaseButton = delegate { };
+
+        [SerializeField] private BladeTrail bladeTrailPrefab;
+        [SerializeField] private Collider2D bladeTrigger;
+        [SerializeField] private float minSliceVelocity;
 
         private Camera _camera;
         private Controls _controls;
 
         private Vector3 _mousePosition;
         private Vector3 _worldPosition;
+        private Vector3 _direction;
+        private float _velocity;
+        private bool _buttonDown;
 
         private void Awake()
         {
@@ -40,26 +49,31 @@ namespace FruitClone
         private void FixedUpdate()
         {
             _mousePosition = Mouse.current.position.ReadValue();
+            _mousePosition.z = 10f;
+            _worldPosition = _camera.ScreenToWorldPoint(_mousePosition);
+            _direction = _worldPosition - transform.position;
+            _velocity = _direction.magnitude;
 
-            _worldPosition = _camera.ScreenToWorldPoint(
-                new Vector3(
-                    _mousePosition.x,
-                    _mousePosition.y,
-                    _camera.nearClipPlane));
-
-            _worldPosition.z = 0f;
-
-            bladeTrigger.position = _worldPosition;
+            transform.position = _worldPosition;
+            bladeTrigger.enabled = _buttonDown && _velocity > minSliceVelocity;
         }
 
         private void ActivateBlade(InputAction.CallbackContext ctx)
         {
-            bladeTrigger.gameObject.SetActive(true);
+            var newTrail = ObjectPool.Spawn(bladeTrailPrefab, transform.position, default);
+            newTrail.Init(transform);
+            _buttonDown = true;
         }
 
         private void DeactivateBlade(InputAction.CallbackContext ctx)
         {
-            bladeTrigger.gameObject.SetActive(false);
+            OnReleaseButton();
+            _buttonDown = false;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            collision.GetComponent<Hitbox>()?.Slice(_direction);
         }
     }
 }
