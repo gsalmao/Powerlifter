@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 66efb99dff1cca34eb0ff0e718377e2c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gameplay_Powerlifter.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
+  - enabled: 1
+    path: Assets/Scenes/Gameplay_FruitClone.unity
+    guid: 1c894fdbd84f2fb48bfbf2fece2a8fa8
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 2fdd7bfdd80920b4cae20af653dcbc64,
       type: 2}

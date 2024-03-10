@@ -1,8 +1,8 @@
 using Powerlifter.Input;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using ZHMQ.ObjectPooling;
 
 namespace FruitClone
 {
@@ -32,10 +32,9 @@ namespace FruitClone
             _controls.Disable();
         }
 
-
         private void SpawnFruit(InputAction.CallbackContext ctx)
         {
-            Fruit newFruit = Instantiate(prefab, fruitSpawnPoint.position, fruitSpawnPoint.rotation);
+            Fruit newFruit = ObjectPool.Spawn(prefab, fruitSpawnPoint.position, fruitSpawnPoint.rotation);
             newFruit.Init(force);
             fruits.Add(newFruit);
         }
@@ -46,7 +45,6 @@ namespace FruitClone
                 fruit.Slice(sliceAngle);
 
             fruits.Clear();
-            
         }
     }
 }

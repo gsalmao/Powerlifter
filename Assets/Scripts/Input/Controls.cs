@@ -171,7 +171,7 @@ namespace Powerlifter.Input
                 {
                     ""name"": """",
                     ""id"": ""d7d5f06d-6467-4c50-9e95-fc8939912668"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
