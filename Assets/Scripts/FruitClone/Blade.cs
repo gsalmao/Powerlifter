@@ -19,7 +19,7 @@ namespace FruitClone
         private Camera _camera;
         private Controls _controls;
 
-        private Vector3 _mousePosition;
+        private Vector3 _touchPosition;
         private Vector3 _worldPosition;
         private Vector3 _direction;
         private float _velocity;
@@ -48,9 +48,9 @@ namespace FruitClone
 
         private void FixedUpdate()
         {
-            _mousePosition = Mouse.current.position.ReadValue();
-            _mousePosition.z = 10f;
-            _worldPosition = _camera.ScreenToWorldPoint(_mousePosition);
+            _touchPosition = _controls.Gameplay.SlicePosition.ReadValue<Vector2>();
+            _touchPosition.z = 10f;
+            _worldPosition = _camera.ScreenToWorldPoint(_touchPosition);
             _direction = _worldPosition - transform.position;
             _velocity = _direction.magnitude;
 

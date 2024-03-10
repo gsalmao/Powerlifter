@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2416611967528260440}
   - component: {fileID: 1643398037488556491}
   - component: {fileID: 545350868600203085}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   bladeTrailPrefab: {fileID: 8620518516652499244, guid: 970a0a7dc6d35cd438c7ef27e8cb2e65,
     type: 3}
   bladeTrigger: {fileID: 545350868600203085}
+  minSliceVelocity: 0.1
 --- !u!58 &545350868600203085
 CircleCollider2D:
   m_ObjectHideFlags: 0

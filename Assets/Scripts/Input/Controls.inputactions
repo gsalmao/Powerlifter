@@ -24,13 +24,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Throw",
-                    "type": "Button",
-                    "id": "dcc70a1a-a28a-421b-a124-313e6e354717",
-                    "expectedControlType": "Button",
+                    "name": "SlicePosition",
+                    "type": "Value",
+                    "id": "6de09910-20f1-41ea-9f5b-8b7460812dbb",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -146,8 +146,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d7d5f06d-6467-4c50-9e95-fc8939912668",
-                    "path": "<Mouse>/leftButton",
+                    "id": "dbfd466e-5ce4-497c-919c-e77566d7f32c",
+                    "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -157,12 +157,12 @@
                 },
                 {
                     "name": "",
-                    "id": "bb70ce10-176d-45ee-aff7-0530bd3d6ca9",
-                    "path": "<Keyboard>/w",
+                    "id": "d24a3c9c-7de2-45ab-b1f3-fbc417100cc3",
+                    "path": "<Touchscreen>/primaryTouch/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throw",
+                    "action": "SlicePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

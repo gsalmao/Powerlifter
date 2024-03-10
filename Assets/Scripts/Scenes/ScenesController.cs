@@ -21,6 +21,10 @@ namespace Powerlifter.Scenes
 
         private async void OnEnable()
         {
+            await UniTask.Delay(1000);
+
+            Application.targetFrameRate = 60;
+
             OnChangeScene += ChangeSceneAsync;
 
             await SceneManager.LoadSceneAsync(firstScene, LoadSceneMode.Additive);

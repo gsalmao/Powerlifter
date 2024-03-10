@@ -48,13 +48,13 @@ namespace Powerlifter.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Throw"",
-                    ""type"": ""Button"",
-                    ""id"": ""dcc70a1a-a28a-421b-a124-313e6e354717"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""SlicePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""6de09910-20f1-41ea-9f5b-8b7460812dbb"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -170,8 +170,8 @@ namespace Powerlifter.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d7d5f06d-6467-4c50-9e95-fc8939912668"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""dbfd466e-5ce4-497c-919c-e77566d7f32c"",
+                    ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -181,12 +181,12 @@ namespace Powerlifter.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bb70ce10-176d-45ee-aff7-0530bd3d6ca9"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""id"": ""d24a3c9c-7de2-45ab-b1f3-fbc417100cc3"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Throw"",
+                    ""action"": ""SlicePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -199,7 +199,7 @@ namespace Powerlifter.Input
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Slice = m_Gameplay.FindAction("Slice", throwIfNotFound: true);
-            m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
+            m_Gameplay_SlicePosition = m_Gameplay.FindAction("SlicePosition", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -263,14 +263,14 @@ namespace Powerlifter.Input
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Slice;
-        private readonly InputAction m_Gameplay_Throw;
+        private readonly InputAction m_Gameplay_SlicePosition;
         public struct GameplayActions
         {
             private @Controls m_Wrapper;
             public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Gameplay_Move;
             public InputAction @Slice => m_Wrapper.m_Gameplay_Slice;
-            public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
+            public InputAction @SlicePosition => m_Wrapper.m_Gameplay_SlicePosition;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -286,9 +286,9 @@ namespace Powerlifter.Input
                 @Slice.started += instance.OnSlice;
                 @Slice.performed += instance.OnSlice;
                 @Slice.canceled += instance.OnSlice;
-                @Throw.started += instance.OnThrow;
-                @Throw.performed += instance.OnThrow;
-                @Throw.canceled += instance.OnThrow;
+                @SlicePosition.started += instance.OnSlicePosition;
+                @SlicePosition.performed += instance.OnSlicePosition;
+                @SlicePosition.canceled += instance.OnSlicePosition;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -299,9 +299,9 @@ namespace Powerlifter.Input
                 @Slice.started -= instance.OnSlice;
                 @Slice.performed -= instance.OnSlice;
                 @Slice.canceled -= instance.OnSlice;
-                @Throw.started -= instance.OnThrow;
-                @Throw.performed -= instance.OnThrow;
-                @Throw.canceled -= instance.OnThrow;
+                @SlicePosition.started -= instance.OnSlicePosition;
+                @SlicePosition.performed -= instance.OnSlicePosition;
+                @SlicePosition.canceled -= instance.OnSlicePosition;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -323,7 +323,7 @@ namespace Powerlifter.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnSlice(InputAction.CallbackContext context);
-            void OnThrow(InputAction.CallbackContext context);
+            void OnSlicePosition(InputAction.CallbackContext context);
         }
     }
 }

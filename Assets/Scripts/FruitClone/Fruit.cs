@@ -94,11 +94,13 @@ namespace FruitClone
             rb.transform.localPosition = default;
             rb.transform.localRotation = default;
 
+            slicedFruit.transform.SetLocalPositionAndRotation(default, default);
+
             foreach (Transform pivot in maskPivots)
-                pivot.rotation = default;
+                pivot.localRotation = default;
 
             foreach (Rigidbody2D rb in piecesRb)
-                rb.transform.localPosition = default;
+                rb.transform.SetLocalPositionAndRotation(default, default);
 
             slicedFruit.SetActive(false);
             rb.gameObject.SetActive(true);
