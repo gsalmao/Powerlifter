@@ -1,39 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Powerlifter.Input;
 
 namespace Powerlifter.PlayerScripts
 {
     public class PlayerController : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private float maxRotationDegrees = 15f;
+
+        [Header("References")]
+        [SerializeField] private PlayerInputs playerInputs;
         [SerializeField] private Transform cameraTransform;
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private Transform playerModel;
+        [SerializeField] private Animator playerModel;
         [SerializeField] private PlayerSettings settings;
 
-        private Controls _controls;
-        private Vector2 _moveInput;
         private Vector3 _cameraForward;
         private Vector3 _cameraRight;
         private Vector3 _moveDirection;
 
-        private void Awake() => _controls = new Controls();
-        private void OnDestroy() => _controls.Dispose();
-        private void OnEnable() => _controls.Enable();
-        private void OnDisable() => _controls.Disable();
+        private Quaternion _targetRotation;
+
+        private const string Walking = "Walking";
 
         private void FixedUpdate()
         {
-            _cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
-            _cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
+            if (playerInputs.IsMoving)
+                MovePlayer();
+            else
+                rb.velocity = default;
 
-            _moveInput = _controls.Gameplay.Move.ReadValue<Vector2>();
-            _moveDirection = _cameraForward * _moveInput.y + _cameraRight * _moveInput.x;
-            
-            playerModel.rotation = Quaternion.LookRotation(_moveDirection.normalized, Vector3.up);
-            rb.velocity = _moveDirection * settings.Speed;
+            playerModel.SetBool(Walking, playerInputs.IsMoving);
         }
 
+        private void Update()
+        {
+            UpdatePlayerAnimations();
+        }
+
+        private void MovePlayer()
+        {
+            _cameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up).normalized;
+            _cameraRight = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up).normalized;
+            _moveDirection = _cameraForward * playerInputs.Movement.y + _cameraRight * playerInputs.Movement.x;
+            rb.velocity = _moveDirection.normalized * settings.Speed;
+        }
+
+        private void UpdatePlayerAnimations()
+        {
+            if (playerInputs.IsMoving)
+            {
+                _targetRotation = Quaternion.LookRotation(_moveDirection.normalized, Vector3.up);
+                playerModel.transform.rotation = Quaternion.RotateTowards(playerModel.transform.rotation, _targetRotation, maxRotationDegrees);
+            }
+
+            playerModel.SetBool(Walking, playerInputs.IsMoving);
+        }
     }
 }

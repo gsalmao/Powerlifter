@@ -19,6 +19,15 @@ namespace Powerlifter.Scenes
         [SerializeField] private float fadeSpeed = .25f;
         private string _currentScene = string.Empty;
 
+#if UNITY_EDITOR
+        private void OnEnable()
+        {
+            OnChangeScene += ChangeSceneAsync;
+            var currentScene = SceneManager.GetActiveScene();
+            _currentScene = currentScene.name;
+        }
+
+#else
         private async void OnEnable()
         {
             OnChangeScene += ChangeSceneAsync;
@@ -31,6 +40,8 @@ namespace Powerlifter.Scenes
             fade.color = Color.black;
             await fade.DOColor(Color.clear, fadeSpeed);
         }
+
+#endif
 
         private void OnDisable() => OnChangeScene -= ChangeSceneAsync;
 
