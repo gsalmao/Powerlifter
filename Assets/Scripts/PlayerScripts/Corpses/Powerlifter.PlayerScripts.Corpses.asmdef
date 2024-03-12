@@ -1,0 +1,14 @@
+{
+    "name": "Powerlifter.PlayerScripts.Corpses",
+    "rootNamespace": "Powerlifter.PlayerScripts.Corpses",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
