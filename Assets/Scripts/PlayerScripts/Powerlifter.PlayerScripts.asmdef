@@ -3,7 +3,11 @@
     "rootNamespace": "Powerlifter.PlayerScripts",
     "references": [
         "GUID:280cc5ea903478b4ea06231658fa023d",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:52219f92a5ef9cf499bfbec7adcf2139",
+        "GUID:5860e45b170eb694cb620c2a78fca931",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:d62e28c2a2479b64cb899945fc58aca1"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

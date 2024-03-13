@@ -8,15 +8,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - DetectPlayer
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Npc
+  - DetectNpc
+  - DetectDeadBody
+  - DeadBody
+  - DefaultOnly
   - 
   - 
   - 

@@ -35,7 +35,7 @@ namespace Powerlifter.UI.MainMenuUI
                 await UniTask.Delay(waitLetterTime);
             }
 
-            await buttons.DOMoveX(0f, showButtonsTime);
+            await buttons.DOMoveX(300f, showButtonsTime);
 
             ActivateButtons();
         }
@@ -47,7 +47,7 @@ namespace Powerlifter.UI.MainMenuUI
             foreach (var letter in letters)
                 letter.DOColor(Color.clear, showButtonsTime);
 
-            await buttons.DOMoveX(-300, showButtonsTime);
+            await buttons.DOMoveX(-900, showButtonsTime);
 
             ScenesController.ChangeScene(gameplayScene);
         }

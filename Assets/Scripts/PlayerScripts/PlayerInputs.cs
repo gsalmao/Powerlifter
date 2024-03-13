@@ -3,9 +3,6 @@ using UnityEngine;
 
 namespace Powerlifter.PlayerScripts
 {
-    /// <summary>
-    /// Responsible for wrapping the input of the player.
-    /// </summary>
     public class PlayerInputs : MonoBehaviour
     {
         public Vector2 Movement { get; private set; }

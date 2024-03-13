@@ -1,0 +1,16 @@
+{
+    "name": "Powerlifter.Stores",
+    "rootNamespace": "Powerlifter.Stores",
+    "references": [
+        "GUID:6ad8ce5ab2273504a986bfc097952982"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
